@@ -29,7 +29,7 @@ def chunks_write(folder,entries,size,title):
 def load_blocks(name):
     return (ROOT/'.work'/name).read_text(encoding='utf-8').strip().split('\n@@@\n')
 if __name__=='__main__':
-    na=load_blocks('net_theory.txt'); pa=load_blocks('proekt_theory.txt'); pp=load_blocks('proekt_practice.txt'); np=load_blocks('net_practice.txt')
+    na=load_blocks('net_theory.txt'); pa=load_blocks('proekt_theory.txt'); pp=load_blocks('proekt_practice.txt'); np=load_blocks('net_practice_beginner.txt' if (ROOT/'.work/net_practice_beginner.txt').exists() else 'net_practice.txt')
     assert (len(na),len(pa),len(pp),len(np))==(60,60,30,40),(len(na),len(pa),len(pp),len(np))
     chunks_write(ROOT/'net/Теория',[f'## Вопрос {i+1}\n\n{q}\n\n### Ответ\n\n{a}' for i,(q,a) in enumerate(zip(netq,na))],8,'Сетевое администрирование · вопросы')
     chunks_write(ROOT/'net/Практика',[f'## Задание {i+1}\n\n{q}\n\n### Решение\n\n{a}' for i,(q,a) in enumerate(zip(netp,np))],4,'Сетевое администрирование · практика')
