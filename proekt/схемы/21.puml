@@ -1,0 +1,38 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 21
+state Выпущена
+state Активна {
+state "Обычный режим" as Normal
+state "Превышен лимит" as Limit
+[*] --> Normal
+Normal --> Limit : операция\n[достигнут лимит]
+Limit --> Normal : новыйПериод\n/ обнулитьСчётчик
+}
+state Заблокирована
+state Просрочена
+state Закрыта
+[*] --> Выпущена
+Выпущена --> Активна : активировать [личность подтверждена]
+Выпущена --> Просрочена : срокИстёк
+Активна --> Заблокирована : заблокировать
+Заблокирована --> Активна : разблокировать [проверка пройдена]
+Активна --> Просрочена : срокИстёк
+Заблокирована --> Просрочена : срокИстёк
+Выпущена --> Закрыта : закрыть
+Активна --> Закрыта : закрыть [нет обязательств]
+Заблокирована --> Закрыта : закрыть [нет обязательств]
+Просрочена --> Закрыта : закрыть [нет обязательств]
+Закрыта --> [*]
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 29
+robust "Дверца" as D
+robust "Магнетрон" as M
+robust "Таймер" as T
+scale 5 as 60 pixels
+@0
+D is Открыта
+M is Выключен
+T is Ожидание
+@1
+D is Закрыта
+@2
+M is Включён
+T is Отсчёт
+@62
+M is Выключен
+T is Сигнал
+@63
+T is Ожидание
+@2 <-> @62 : {60 с}
+
+@enduml

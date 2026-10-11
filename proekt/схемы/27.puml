@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 27
+actor Отправитель as S
+participant Клиент as C
+participant Сервер as V
+actor Получатель as R
+S -> C : отправить текст
+C ->> V : сообщение(id, текст)
+par доставка
+V ->> R : новое сообщение(id, текст)
+R ->> V : подтверждение доставки(id)
+else сохранение
+V -> V : сохранитьВИстории(id, текст)
+end
+V ->> C : статус(id, доставлено)
+note over C,V
+Открытые наконечники: асинхронные сообщения.
+id позволяет распознавать повторы.
+end note
+@enduml

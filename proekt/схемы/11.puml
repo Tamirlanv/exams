@@ -1,0 +1,45 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 11
+object "иванов:Читатель" as R {
+номерБилета = "R001"
+ФИО = "Иванов"
+}
+object "книга1:Книга" as B1 {
+название = "Алгоритмы"
+}
+object "книга2:Книга" as B2 {
+название = "Компьютерные сети"
+}
+object "экз1:Экземпляр" as E1 {
+инвентарныйНомер = "E101"
+}
+object "экз2:Экземпляр" as E2 {
+инвентарныйНомер = "E202"
+}
+object "выдача1:Выдача" as L1 {
+датаВыдачи = "2026-10-01"
+датаВозврата = null
+}
+object "выдача2:Выдача" as L2 {
+датаВыдачи = "2026-10-01"
+датаВозврата = null
+}
+R -- L1
+R -- L2
+L1 -- E1
+L2 -- E2
+B1 *-- E1
+B2 *-- E2
+@enduml

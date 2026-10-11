@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 22
+state Ожидание
+state "Движение вверх" as Up
+state "Движение вниз" as Down
+state "Двери открыты" as Open
+Open : entry / открытьДвери(); запуститьТаймер()
+Open : exit / закрытьДвери()
+[*] --> Ожидание
+Ожидание --> Up : вызов [цель > этаж && двери закрыты]
+Ожидание --> Down : вызов [цель < этаж && двери закрыты]
+Ожидание --> Open : вызов [цель == этаж]
+Up --> Open : прибытие [этаж == цель] / остановить
+Down --> Open : прибытие [этаж == цель] / остановить
+Open --> Ожидание : таймер [проём свободен]
+Open : препятствие / перезапуститьТаймер()
+@enduml

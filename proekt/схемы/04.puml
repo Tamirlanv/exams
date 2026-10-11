@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 4
+left to right direction
+actor Пациент as P
+actor "Сервис уведомлений" as N
+rectangle "Запись к врачу" {
+usecase "Найти врача" as Find
+usecase "Записаться на приём" as Book
+usecase "Проверить свободное время" as Check
+usecase "Отправить подтверждение" as Send
+}
+P -- Find
+P -- Book
+Book ..> Check : <<include>>
+Book ..> Send : <<include>>
+N -- Send
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 2
+left to right direction
+actor Клиент as C
+actor "Банковская система" as B
+rectangle Банкомат {
+usecase "Снять наличные" as W
+usecase "Проверить баланс" as Bal
+usecase "Пополнить телефон" as Tel
+usecase "Сменить ПИН-код" as Change
+usecase "Проверить ПИН-код" as Pin
+usecase "Напечатать чек" as Receipt
+}
+C -- W
+C -- Bal
+C -- Tel
+C -- Change
+B -- Pin
+B -- W
+B -- Bal
+B -- Tel
+B -- Change
+W ..> Pin : <<include>>
+Bal ..> Pin : <<include>>
+Tel ..> Pin : <<include>>
+Change ..> Pin : <<include>>
+Receipt ..> W : <<extend>>\n[клиент запросил чек]
+@enduml

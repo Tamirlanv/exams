@@ -1,0 +1,53 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 16
+|Покупатель|
+start
+:Оформить корзину;
+|Система|
+:Проверить данные заказа;
+|Склад|
+:Проверить наличие;
+if (Товар есть?) then (нет)
+|Система|
+:Сообщить об отсутствии товара;
+stop
+else (да)
+endif
+|Склад|
+:Зарезервировать товар;
+|Покупатель|
+:Выбрать способ оплаты;
+if (Онлайн?) then (да)
+|Система|
+:Провести оплату;
+if (Оплата успешна?) then (да)
+:Подтвердить заказ;
+else (нет)
+|Склад|
+:Снять резерв;
+|Система|
+:Сообщить об ошибке оплаты;
+stop
+endif
+else (при получении)
+|Система|
+:Подтвердить оплату при получении;
+endif
+|Склад|
+:Собрать и передать заказ;
+|Покупатель|
+:Получить результат;
+stop
+@enduml

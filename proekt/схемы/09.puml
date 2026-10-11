@@ -1,0 +1,48 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 9
+class Покупатель {
+-id: UUID
+-email: String
++создатьЗаказ(): Заказ
+}
+class Заказ {
+-номер: String
+-статус: String
++рассчитатьСумму(): Decimal
++подтвердить(): void
+}
+class ПозицияЗаказа {
+-количество: Integer
+-ценаНаМоментЗаказа: Decimal
++подытог(): Decimal
+}
+class Товар {
+-артикул: String
+-название: String
+-цена: Decimal
++изменитьЦену(цена): void
+}
+class Категория {
+-название: String
++добавитьТовар(товар): void
+}
+Покупатель "1" -- "0..*" Заказ
+Заказ "1" *-- "1..*" ПозицияЗаказа
+ПозицияЗаказа "0..*" --> "1" Товар
+Категория "1" -- "0..*" Товар
+note bottom of ПозицияЗаказа
+{количество > 0; цена >= 0}
+end note
+@enduml

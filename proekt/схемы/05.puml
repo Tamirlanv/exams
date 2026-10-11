@@ -1,0 +1,43 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 5
+class Университет {
+-название: String
+-адрес: String
++добавитьФакультет()
+}
+class Факультет {
+-название: String
++создатьГруппу()
+}
+class Группа {
+-код: String
+-годНабора: Integer
++зачислить(студент)
+}
+class Студент {
+-номер: String
+-ФИО: String
+}
+class Преподаватель {
+-номер: String
+-ФИО: String
++вестиЗанятие()
+}
+Университет "1" *-- "1..*" Факультет
+Факультет "1" -- "0..*" Группа
+Группа "0..1" o-- "0..*" Студент
+Факультет "1" -- "0..*" Преподаватель
+Преподаватель "0..*" -- "0..*" Группа : преподаёт
+@enduml

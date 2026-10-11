@@ -1,0 +1,32 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 17
+start
+:Подать документы;
+repeat
+:Проверить комплектность;
+if (Комплект полный?) then (нет)
+:Сообщить о недостающих документах;
+:Доработать и подать пакет;
+else (да)
+endif
+repeat while (Комплект неполный?) is (да) not (нет)
+:Проверить условия приёма;
+if (Условия выполнены и есть место?) then (да)
+:Зачислить;
+else (нет)
+:Оформить мотивированный отказ;
+endif
+stop
+@enduml

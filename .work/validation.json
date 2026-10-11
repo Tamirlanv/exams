@@ -1,0 +1,12 @@
+{
+  "project_tickets": 30,
+  "project_theory_answers": 60,
+  "project_png": 30,
+  "network_theory_answers": 60,
+  "network_practical_solutions": 40,
+  "solution_markdown_files": 26,
+  "local_links_checked": 60,
+  "subnet_calculations": "pass",
+  "original_question_coverage": "pass",
+  "network_labs_executed": false
+}

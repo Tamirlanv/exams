@@ -1,0 +1,38 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 24
+actor Клиент as C
+participant Банкомат as ATM
+participant Банк as B
+participant Счёт as A
+C -> ATM : снять(сумма)
+ATM -> B : запроситьСнятие(сумма)
+activate B
+B -> A : проверитьИЗарезервировать(сумма)
+alt достаточно средств
+A --> B : резерв создан
+B --> ATM : разрешить выдачу
+ATM -> C : выдать наличные
+ATM -> B : выдача подтверждена
+B -> A : списать резерв
+opt клиент запросил чек
+ATM -> C : напечатать чек
+end
+else недостаточно средств
+A --> B : отказ
+B --> ATM : недостаточно средств
+ATM --> C : показать отказ
+end
+deactivate B
+@enduml

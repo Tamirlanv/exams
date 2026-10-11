@@ -1,0 +1,31 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 28
+robust "Светофор для машин" as C
+robust "Светофор для пешеходов" as P
+@0
+C is Зелёный
+P is Красный
+@40
+C is Жёлтый
+@45
+C is Красный
+P is Зелёный
+@90
+C is Зелёный
+P is Красный
+@0 <-> @40 : 40 с
+@40 <-> @45 : 5 с
+@45 <-> @90 : 45 с
+@enduml

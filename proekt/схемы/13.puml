@@ -1,0 +1,41 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 13
+left to right direction
+skinparam componentStyle uml2
+component "Веб-интерфейс" as Web
+component Каталог as Cat
+component Заказы as Ord
+component Оплата as Pay
+component "База данных" as DB
+interface ICatalog as IC
+interface IOrders as IO
+interface IPayment as IP
+interface IData as ID
+Cat - IC
+Ord - IO
+Pay - IP
+DB - ID
+Web ..> IC
+Web ..> IO
+Ord ..> IC
+Ord ..> IP
+Cat ..> ID
+Ord ..> ID
+Pay ..> ID
+legend bottom
+Сплошная связь: предоставляет интерфейс
+Пунктирная стрелка: требует интерфейс
+endlegend
+@enduml

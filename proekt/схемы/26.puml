@@ -1,0 +1,27 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 26
+top to bottom direction
+object "пользователь:Пользователь" as U
+object "форма:ФормаВхода" as F
+object "авторизация:СерверАвторизации" as A
+object "бд:БазаДанных" as DB
+U --> F : 1: ввести(логин, пароль)
+F --> A : 1.1: войти(логин, пароль)
+A --> DB : 1.1.1: получитьХеш(логин)
+DB --> A : 1.1.2: вернутьХеш()
+A --> A : 1.1.3: проверитьПароль()
+A --> F : 1.1.4 [верно]: токен\n1.1.4 [иначе]: отказ
+F --> U : 1.2: показатьРезультат()
+@enduml

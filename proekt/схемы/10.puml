@@ -1,0 +1,33 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 10
+class Студент {
+-номер: String
+-ФИО: String
+}
+class Дисциплина {
+-код: String
+-название: String
+}
+class РезультатЭкзамена {
+-оценка: Integer
+-дата: Date
+}
+Студент "0..*" -- "0..*" Дисциплина : сдаёт
+(Студент, Дисциплина) .. РезультатЭкзамена
+note bottom of РезультатЭкзамена
+Один результат для пары
+Студент–Дисциплина.
+end note
+@enduml

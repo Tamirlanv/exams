@@ -1,0 +1,34 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 20
+state "Дневной режим" as Day {
+state "Красный" as Red
+state "Жёлтый перед зелёным" as Y1
+state "Зелёный" as Green
+state "Жёлтый перед красным" as Y2
+[*] --> Red
+Red --> Y1 : after(40 с)
+Y1 --> Green : after(5 с)
+Green --> Y2 : after(40 с)
+Y2 --> Red : after(5 с)
+}
+state "Мигающий жёлтый" as Night
+[*] --> Day
+Day --> Night : ночнойРежим
+Night --> Day : дневнойРежим
+note bottom of Day
+Y1 и Y2 имеют одинаковый цвет,
+но разные последующие состояния.
+end note
+@enduml

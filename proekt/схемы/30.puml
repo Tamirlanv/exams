@@ -1,0 +1,35 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 30
+robust "Кнопка вызова" as B
+robust "Лифт" as L
+robust "Двери" as D
+scale 5 as 100 pixels
+@0
+B is Нажата
+L is Движение
+D is Закрыты
+B -> L : вызов
+@1
+B is Отпущена
+@20
+L is НаЭтаже
+D is Открыты
+@25
+D is Закрыты
+@30
+L is Ожидание
+@0 <-> @20 : {не более 30 с}
+@20 <-> @25 : {не менее 5 с}
+@enduml

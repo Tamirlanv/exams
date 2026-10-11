@@ -1,0 +1,35 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 14
+top to bottom direction
+node "Смартфон пациента" as Phone {
+artifact "Браузер / мобильный клиент" as Client
+}
+node "Веб-сервер" as Web {
+artifact "Статические файлы + reverse proxy" as Proxy
+}
+node "Сервер приложений" as App {
+artifact "booking.jar" as API
+}
+node "Сервер БД" as DB {
+artifact "booking_db" as Data
+}
+node "Внешний SMS-шлюз" as SMS {
+artifact "SMS API" as SMSAPI
+}
+Phone -- Web : HTTPS / TCP 443
+Web -- App : HTTPS / TCP 8443
+App -- DB : PostgreSQL + TLS / TCP 5432
+App -- SMS : HTTPS / TCP 443
+@enduml

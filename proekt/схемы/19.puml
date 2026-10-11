@@ -1,0 +1,28 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 19
+state Создан
+state Оплачен
+state Собран
+state Доставлен
+state Отменён
+[*] --> Создан : создать
+Создан --> Оплачен : оплатить [платёж подтверждён]
+Оплачен --> Собран : собрать [товар зарезервирован]
+Собран --> Доставлен : вручить [получатель подтвердил]
+Создан --> Отменён : отменить [не оплачен]
+Оплачен --> Отменён : отменить [сборка не начата]\n/ инициировать возврат
+Доставлен --> [*]
+Отменён --> [*]
+@enduml

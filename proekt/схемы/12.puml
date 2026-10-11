@@ -1,0 +1,29 @@
+@startuml
+!pragma layout smetana
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontSize 16
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam dpi 150
+skinparam ArrowColor #334155
+skinparam classBackgroundColor #EFF6FF
+skinparam stateBackgroundColor #EFF6FF
+skinparam activityBackgroundColor #EFF6FF
+hide empty members
+title Билет 12
+package Студенты as S
+package "Учебный процесс" as U
+package Расписание as T
+package Отчёты as R
+package "Общие сервисы" as C
+U ..> S : использует контракты
+T ..> U : учебные планы
+R ..> S : контингент
+R ..> U : успеваемость
+R ..> T : расписание
+S ..> C
+U ..> C
+T ..> C
+R ..> C
+@enduml
